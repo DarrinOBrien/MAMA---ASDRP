@@ -31,12 +31,18 @@ flowchart TD
     D01 --> D02{Integration Depth}
     D02 --> |Deep Interdependence| D04(Heavy Generalist Path)
     D02 --> |Modular Components| D03(Hybrid Path)
-    D04 --> D05{Hardware Constraints Check}
-    D05 --> |Sufficient| D06(Load Large Generalist)
-    D05 --> |Insufficient| D03
-    D06 --> D07(Execute Task)
-    D07 --> D08{Interruption?}
-    D08 --> |No| Return
+    D04 --> D05{Cloud API Conditions}
+    D05 --> D06(Insufficient Resources?)
+    D05 --> D07(No Adequete Local Model?)
+    D05 --> D08(Special Capability Needed?)
+    D06 --> |Yes| D09(API Call to Large Generalist Model)
+    D07 --> |Yes| D09
+    D08 --> |Yes| D09
+    D09 --> D090(At least one condition met?)
+    D090 --> |Yes| D091(Execute Task)
+    D090 --> |No| D03
+    D091 --> D092{Interruption?}
+    D092 --> |No| Return
 
     D03 --> D10(Load Micro Models)
     D10 --> D11(Mid-Generalist Base Model)
