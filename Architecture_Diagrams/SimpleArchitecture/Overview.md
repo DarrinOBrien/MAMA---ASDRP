@@ -2,16 +2,24 @@
 
 ```mermaid
 flowchart TD
+    %% Main flow
     A[User Prompt] --> B[Orchestrator]
-    B --> |Single Domain| C[Single-Domain Executor]
-    B --> |Multi Domain| D[Multi-Domain Executor]
-    C --> E[Model + Adapter Management]
-    D --> E
 
-    %% Interruption Handling Highlight
+    %% Invisible nodes for alignment
+    subgraph MainLine
+        direction LR
+        B --> C[Single-Domain Executor]
+        B --> D[Multi-Domain Executor]
+        C --> E[Model + Adapter Management]
+        D --> E
+    end
+
+    %% Interrupt check below Model Management
     E --> F[Interrupt?]
 
-    subgraph Interrupt Flow
+    %% Interrupt Flow starts here only
+    subgraph Interrupt_Flow["Interrupt Flow"]
+        direction TB
         F --> |Yes| G{Urgency Level}
         G --> |Critical| H[Immediate Execution]
         G --> |Time-Sensitive| I["Priority Queue (FIFO)"]
