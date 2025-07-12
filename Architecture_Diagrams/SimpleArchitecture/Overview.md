@@ -14,8 +14,8 @@ flowchart TD
     subgraph Interrupt Flow
         F --> |Yes| G{Urgency Level}
         G --> |Critical| H[Immediate Execution]
-        G --> |Time-Sensitive| I[Priority Queue (FIFO)]
-        G --> |Low Priority| J[Task Stack (LIFO)]
+        G --> |Time-Sensitive| I["Priority Queue (FIFO)"]
+        G --> |Low Priority| J["Task Stack (LIFO)"]
         I --> K[Scheduler]
         J --> K
         K --> B
